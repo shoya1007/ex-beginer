@@ -1,0 +1,38 @@
+package com.example.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+
+import javax.servlet.http.HttpSession;
+
+
+
+
+
+@Controller
+@RequestMapping("/ex02")
+public class Exam02Controller {
+	@Autowired 
+	private HttpSession session;
+	@RequestMapping("")
+	public String index() {
+		return "Exam02";
+	}
+	
+	@RequestMapping("/result")
+	public String result(Integer num1,Integer num2) {
+		Integer answer = num1 + num2;
+		session.setAttribute("num1", num1);
+		session.setAttribute("num2", num2);
+		session.setAttribute("answer", answer);
+		return "exam02-result";
+	}
+	
+	@RequestMapping("/result2")
+	public String result2() {
+		return "exam02-result2";
+	}
+}
